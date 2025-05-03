@@ -18,7 +18,5 @@ public class CommentDTO {
     @NotBlank(message = "Content is mandatory")
     private String content;
 
-//    private LocalDate createdAt;
-
-    private Long postId;
+//    private Long postId;
 }

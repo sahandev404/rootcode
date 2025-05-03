@@ -21,8 +21,8 @@ public class CommentService {
     @Autowired
     private PostRepository postRepository;
 
-    public CommentDTO createComment(CommentDTO commentDTO) {
-        Post post = postRepository.findById(commentDTO.getPostId())
+    public CommentDTO createComment(CommentDTO commentDTO, Long postId) {
+        Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found"));
 
         Comment comment = new Comment();

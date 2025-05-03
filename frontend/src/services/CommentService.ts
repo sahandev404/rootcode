@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const CreateComment = async (postId: string, comment: CommentForm) => {
     try {
-        const response = await axios.post(BackendUrl + "/posts/" + postId + "/comments", comment)
+        const response = await axios.post(`${BackendUrl}/posts/comments/${postId}`, comment)
         return response.data
     } catch (error) {
         console.error("Error creating post:", error)

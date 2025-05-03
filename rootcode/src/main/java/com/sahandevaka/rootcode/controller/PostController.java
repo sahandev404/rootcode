@@ -44,10 +44,12 @@ public class PostController {
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}/comments")
-    public ResponseEntity<CommentDTO> createComment(@Valid @RequestBody CommentDTO commentDTO) {
-        System.out.println("test");
-        CommentDTO createdComment = commentService.createComment(commentDTO);
+    @PostMapping("/comments/{id}")
+    public ResponseEntity<CommentDTO> createComment(
+            @Valid @RequestBody CommentDTO commentDTO,
+            @PathVariable("id") long postId) {
+        System.out.println("dto = " + commentDTO);
+        CommentDTO createdComment = commentService.createComment(commentDTO,postId );
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
 
