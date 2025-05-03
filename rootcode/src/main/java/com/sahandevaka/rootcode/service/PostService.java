@@ -7,6 +7,7 @@ import com.sahandevaka.rootcode.entity.Comment;
 import com.sahandevaka.rootcode.entity.Post;
 import com.sahandevaka.rootcode.repo.CommentRepository;
 import com.sahandevaka.rootcode.repo.PostRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,5 +65,16 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found"));
         postRepository.delete(post);
+    }
+
+    public PostDTO updatePost(Long id, @Valid PostDTO postDTO) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found"));
+        post.setTitle(postDTO.getTitle());
+        post.setContent(postDTO.getContent());
+        post = postRepository.save(post);
+
+        postDTO.setId(post.getId());
+        return postDTO;
     }
 }
