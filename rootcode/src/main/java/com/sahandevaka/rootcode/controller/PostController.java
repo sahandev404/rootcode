@@ -7,6 +7,7 @@ import com.sahandevaka.rootcode.dto.PostDTO;
 import com.sahandevaka.rootcode.service.CommentService;
 import com.sahandevaka.rootcode.service.PostService;
 import jakarta.validation.Valid;
+import jakarta.xml.bind.SchemaOutputResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/posts")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class PostController {
 
     @Autowired
@@ -43,7 +45,8 @@ public class PostController {
     }
 
     @PostMapping("/{id}/comments")
-        public ResponseEntity<CommentDTO> createComment(@Valid @RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<CommentDTO> createComment(@Valid @RequestBody CommentDTO commentDTO) {
+        System.out.println("test");
         CommentDTO createdComment = commentService.createComment(commentDTO);
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
@@ -52,6 +55,12 @@ public class PostController {
     public ResponseEntity<List<GetCommentDTO>> getCommentsByPostId(@PathVariable Long postId) {
         List<GetCommentDTO> comments = commentService.getCommentsByPostId(postId);
         return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+        return new ResponseEntity<>("Post deleted successfully", HttpStatus.OK);
     }
 
 }

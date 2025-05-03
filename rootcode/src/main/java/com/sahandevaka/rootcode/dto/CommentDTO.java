@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 public class CommentDTO {
 
-    private Long id;
+//    private Long id;
 
     @NotBlank(message = "Content is mandatory")
     private String content;

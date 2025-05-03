@@ -30,18 +30,14 @@ public class CommentService {
         comment.setPost(post);
         comment = commentRepository.save(comment);
 
-        commentDTO.setId(comment.getId());
-//        commentDTO.setCreatedAt(comment.getCreatedAt());
+//        commentDTO.setId(comment.getId());
         return commentDTO;
     }
 
     public List<GetCommentDTO> getCommentsByPostId(Long postId) {
         return commentRepository.findByPostId(postId).stream().map(comment -> {
             GetCommentDTO dto = new GetCommentDTO();
-            dto.setId(comment.getId());
             dto.setContent(comment.getContent());
-            dto.setCreatedAt(comment.getCreatedAt());
-            dto.setPostId(comment.getPost().getId());
             return dto;
         }).collect(Collectors.toList());
     }

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,5 +19,5 @@ public class PostDTO {
     @NotBlank(message = "Content is mandatory")
     private String content;
 
-//    private LocalDate createdAt;
+    private List<GetCommentDTO> comments;
 }

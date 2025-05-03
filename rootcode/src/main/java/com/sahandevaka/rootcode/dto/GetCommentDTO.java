@@ -14,12 +14,7 @@ import java.util.Date;
 @Data
 public class GetCommentDTO {
 
-    private Long id;
-
     @NotBlank(message = "Content is mandatory")
     private String content;
 
-    private Date createdAt;
-
-    private Long postId;
 }
