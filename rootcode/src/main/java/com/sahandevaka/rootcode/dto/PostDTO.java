@@ -1,0 +1,23 @@
+package com.sahandevaka.rootcode.dto;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class PostDTO {
+
+    private Long id;
+
+    @NotBlank(message = "Title is mandatory")
+    private String title;
+
+    @NotBlank(message = "Content is mandatory")
+    private String content;
+
+//    private LocalDate createdAt;
+}
