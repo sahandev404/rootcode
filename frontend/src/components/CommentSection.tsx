@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Comment from './Comment';
 import { usePostContext } from '../pages/Post';
-import { CreateComment } from '../services/CommentService';
+import { CreateComment, getComments } from '../services/CommentService';
 import { CommentType } from '../types/types';
 
 const CommentSection = () => {
@@ -10,12 +10,30 @@ const CommentSection = () => {
   const [newComment, setNewComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Keep local comments state in sync with post comments
+
+  // Fetch comments if not available in the post context
   useEffect(() => {
-    if (post?.comments) {
-      setComments(post.comments);
-    }
-  }, [post?.comments]);
+    const fetchComments = async () => {
+      if (post?.id) {
+        try {
+          const fetchedComments = await getComments(post.id); // Fetch comments from the backend
+          // console.log(fetchComments);
+          setComments(fetchedComments);
+        } catch (error) {
+          console.error('Failed to fetch comments:', error);
+        }
+      }
+    };
+
+    fetchComments();
+  }, [post?.id]);
+  
+  // Keep local comments state in sync with post comments
+  // useEffect(() => {
+  //   if (post?.comments) {
+  //     setComments(post.comments);
+  //   }
+  // }, [post?.comments]);
 
   const handleSubmitComment = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,8 +62,8 @@ const CommentSection = () => {
       <h3 className="text-xl font-medium mb-4">Comments ({comments.length})</h3>
       {comments.length > 0 ? (
         <div className="comments-list">
-          {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+          {comments.map((comment, index) => (
+            <Comment key={`${comment.id}-${index}`} comment={comment} />
           ))}
         </div>
       ) : (
