@@ -88,7 +88,7 @@ const PostContent = () => {
     return (
         <div className="border-black border-2 rounded-md p-6 mb-8 w-full max-w-4xl mt-5">
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-            <p className="text-gray-600 mb-2">Posted on: {new Date(post.createdAt).toLocaleDateString()}</p>
+            <p className="text-gray-600 mb-2">Posted on: {new Date(post.createdAt).toLocaleDateString()} at {new Date(post.createdAt).toLocaleTimeString()} </p>
             <div className="mt-6 text-gray-800">
                 <p>{post.content}</p>
             </div>
