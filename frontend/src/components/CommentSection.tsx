@@ -26,7 +26,7 @@ const CommentSection = () => {
     };
 
     fetchComments();
-  }, [post?.id]);
+  }, [post?.id,newComment]);
   
   // Keep local comments state in sync with post comments
   // useEffect(() => {
