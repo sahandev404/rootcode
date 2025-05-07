@@ -12,3 +12,13 @@ export const CreateComment = async (postId: string, comment: CommentForm) => {
     }
 
 }
+
+export const getComments = async (postId: string) => {
+    try {
+        const response = await axios.get(BackendUrl + `/posts/${postId}/comments`)  
+        return response.data
+    } catch (error) {
+        console.error("Error fetching posts:", error)
+        throw error
+    }
+}
