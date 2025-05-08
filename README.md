@@ -1,7 +1,7 @@
-# RootCode Application
+# social-content-manager
 
 ## Overview
-The **RootCode Application** is a full-stack project featuring a backend built with Spring Boot and a frontend developed using React, TypeScript, and Vite. It provides a RESTful API for managing posts and comments, along with a modern, user-friendly frontend interface.
+The **social-content-manager** is a full-stack project featuring a backend built with Spring Boot and a frontend developed using React, TypeScript, and Vite. It provides a RESTful API for managing posts and comments, along with a modern, user-friendly frontend interface.
 
 ## Features
 - **Backend**:
